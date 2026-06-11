@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="light">
-<meta name="theme-color" content="#faf7f2">
+<meta name="theme-color" content="#18211d">
 
 <title>Kristiānas & Everta Kāzas</title>
 
@@ -329,6 +329,117 @@ footer{
 
 }
 
+/* ==========================
+   DARK MODE
+   ========================== */
+
+@media (prefers-color-scheme: dark){
+
+    body{
+        background:#18211d;
+        color:#f3eadf;
+    }
+
+    #envelope-screen{
+        background:#18211d;
+    }
+
+    .envelope{
+        background:#2a332e;
+        color:#f3eadf;
+    }
+
+    .flap{
+        background:#b08d57;
+    }
+
+    .hero{
+        background:
+        linear-gradient(
+            rgba(0,0,0,.55),
+            rgba(0,0,0,.55)
+        ),
+        url('https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2000');
+
+        background-size:cover;
+        background-position:center;
+    }
+
+    .hero h1,
+    .hero h2,
+    .hero p{
+        color:#fff8ef;
+    }
+
+    .card{
+        background:#24302a;
+        color:#f3eadf;
+        box-shadow:0 10px 30px rgba(0,0,0,.4);
+    }
+
+    .title{
+        color:#d8b97d;
+    }
+
+    .detail h3{
+        color:#d8b97d;
+    }
+
+    #countdown{
+        background:#24302a;
+        color:#f3eadf;
+        border:1px solid #b08d57;
+    }
+
+    input,
+    textarea,
+    select{
+        background:#1d2722;
+        color:#f3eadf;
+        border:1px solid #445248;
+    }
+
+    input::placeholder,
+    textarea::placeholder{
+        color:#bfb5a7;
+    }
+
+    button{
+        background:#b08d57;
+        color:white;
+    }
+
+    button:hover{
+        background:#c7a46a;
+    }
+
+    footer{
+        color:#d8cfc2;
+    }
+
+    .dress-note{
+        color:#d6c8b7;
+    }
+
+    .color-circle{
+        border:2px solid rgba(255,255,255,.15);
+    }
+
+    .gallery img{
+        box-shadow:0 5px 20px rgba(0,0,0,.4);
+    }
+}
+
+@media (prefers-color-scheme: dark){
+
+    .hero h1{
+        text-shadow:
+            0 0 10px rgba(176,141,87,.3),
+            0 0 20px rgba(176,141,87,.2);
+    }
+
+}
+
 </style>
 </head>
 
@@ -630,7 +741,10 @@ for(let i=0;i<25;i++){
 
     petal.classList.add('petal');
 
-    petal.innerHTML = '🌸';
+    const dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    petal.innerHTML =
+    dark ? '✨' : '🌸';
 
     petal.style.left =
     Math.random()*100+'vw';
