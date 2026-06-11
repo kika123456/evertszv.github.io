@@ -564,7 +564,48 @@ footer{
     opacity:1;
     transform:none;
 }
+.timeline{
+    max-width:650px;
+    margin:30px auto 0;
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+}
 
+.timeline-item{
+    display:flex;
+    align-items:center;
+    padding:18px 24px;
+    background:rgba(176,141,87,.06);
+    border-radius:14px;
+    border-left:4px solid #b08d57;
+}
+
+.timeline-time{
+    min-width:90px;
+    font-weight:600;
+    font-size:1.1rem;
+    color:#b08d57;
+}
+
+.timeline-event{
+    flex:1;
+    font-size:1rem;
+}
+
+@media(max-width:600px){
+
+    .timeline-item{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:6px;
+    }
+
+    .timeline-time{
+        min-width:auto;
+    }
+
+}
 </style>
 </head>
 
@@ -629,7 +670,51 @@ footer{
 
             <div class="detail">
                 <h3>📍 Vieta</h3>
-                <p>Kuldīgas dzimtsarakstu nodaļa</p>
+                <a target="_blank" href="https://www.google.com/maps/place/Kuld%C4%ABgas+novada+pa%C5%A1vald%C4%ABba/@56.9673316,21.9704601,17z/data=!3m1!4b1!4m6!3m5!1s0x46efda71f8ffdfd1:0x65ba466f2811bbb2!8m2!3d56.9673316!4d21.9704601!16s%2Fg%2F11xngtqqg?entry=ttu&g_ep=EgoyMDI2MDYwMy4xIKXMDSoASAFQAw%3D%3D">Kuldīgas dzimtsarakstu nodaļa</a>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="section reveal">
+
+    <div class="card">
+
+        <div class="title">Dienas Plāns</div>
+
+        <div class="timeline">
+
+            <div class="timeline-item">
+                <div class="timeline-time">13:00</div>
+                <div class="timeline-event">Ceremonija</div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-time">14:00</div>
+                <div class="timeline-event">Fotosesija & viesu sagaidīšana</div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-time">15:00</div>
+                <div class="timeline-event">Svētku pusdienas</div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-time">17:00</div>
+                <div class="timeline-event">Tortes griešana</div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-time">18:00</div>
+                <div class="timeline-event">Pirmā deja</div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-time">19:00</div>
+                <div class="timeline-event">Vakara svinības</div>
             </div>
 
         </div>
@@ -724,34 +809,52 @@ footer{
 </section>
 
 <section class="section reveal">
+    <div class="card" style="display: flex; flex-direction: column; align-items: center">
+        <div class="title">Dāvanas</div>
+        <img style="max-width: 300px"
+             src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExNmp1dndkaGVnNTYxeDVydDFhdmU3aWQycnRjdGg4MmR5MTRhc2s0YiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/xTiTnqUxyWbsAXq7Ju/giphy.gif"
+        >
+
+    </div>
+
+</section>
+
+<section class="section reveal">
 
     <div class="card">
 
         <div class="title">Lūdzam apstiprināt dalību</div>
 
         <form class="rsvp-form"
-              action="YOUR_FORM_URL"
-              method="POST">
-
+              action="https://docs.google.com/forms/d/e/1FAIpQLSeMHmPqjdjyZ6Vyp8ojjZADpJvf467AMY8buGmOa6o-GubYnw/formResponse"
+              method="POST"
+              target="_blank"
+        >
             <input
                 type="text"
-                name="name"
+                name="entry.377276195"
                 placeholder="Vārds"
                 required>
 
-            <select name="attendance" required>
+            <select name="entry.1945311042" required>
                 <option value="">Vai ieradīsies?</option>
-                <option>Jā, ar prieku!</option>
-                <option>Diemžēl netieku</option>
+                <option value="Jā, ar prieku!">Jā, ar prieku!</option>
+                <option value="Diemžēl netieku">Diemžēl netieku</option>
+            </select>
+
+            <select name="entry.1445379506" required>
+                <option value="">Plus 1?</option>
+                <option value="Jā">Jā</option>
+                <option value="Nē">Nē</option>
             </select>
 
             <input
                 type="number"
-                name="guests"
-                placeholder="Viesu skaits">
+                name="entry.905717266"
+                placeholder="Plus 1 Vārds">
 
             <textarea
-                name="message"
+                name="entry.832779886"
                 rows="4"
                 placeholder="Papildus komentāri"></textarea>
 

@@ -1,2 +1,2 @@
 # evertszv.github.io
-Kāzu ielūgums
+Vārda dienas ielūgums
