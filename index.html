@@ -51,9 +51,38 @@ body{
     background:white;
     position:relative;
     cursor:pointer;
-    border-radius:10px;
-    box-shadow:0 20px 50px rgba(0,0,0,.15);
+    border-radius:14px;
+    box-shadow:
+        0 30px 80px rgba(0,0,0,.15),
+        0 10px 25px rgba(0,0,0,.08);
     overflow:hidden;
+
+    animation: envelopeAppear 1.4s ease forwards;
+    transform:translateY(40px) scale(.92);
+    opacity:0;
+}
+
+.envelope{
+    animation:
+        envelopeAppear 1.4s ease forwards,
+        floatEnvelope 5s ease-in-out infinite 1.4s;
+}
+
+
+@keyframes envelopeAppear{
+    to{
+        transform:translateY(0) scale(1);
+        opacity:1;
+    }
+}
+
+@keyframes floatEnvelope{
+    0%,100%{
+        transform:translateY(0);
+    }
+    50%{
+        transform:translateY(-10px);
+    }
 }
 
 .flap{
@@ -66,8 +95,16 @@ body{
     transition:1s;
 }
 
+.flap{
+    transform-origin:top center;
+    transition:
+        transform 1.2s cubic-bezier(.22,1,.36,1);
+}
+
 .envelope.open .flap{
-    transform:rotateX(180deg);
+    transform:
+        perspective(1200px)
+        rotateX(-180deg);
 }
 
 .letter-preview{
@@ -75,7 +112,7 @@ body{
     inset:0;
     display:flex;
     flex-direction:column;
-    justify-content:center;
+    justify-content:end;
     align-items:center;
     text-align:center;
     padding:20px;
@@ -98,7 +135,7 @@ body{
     inset:0;
     pointer-events:none;
     overflow:hidden;
-    z-index:2;
+    z-index:-2;
 }
 
 .petal{
@@ -145,6 +182,9 @@ body{
 
     background-size:cover;
     background-position:center;
+
+    z-index: -1;
+    position: relative;
 }
 
 .hero h1{
@@ -440,6 +480,91 @@ footer{
 
 }
 
+.seal{
+    position:absolute;
+    left:50%;
+    top:55%;
+    transform:translate(-50%,-50%);
+
+    width:70px;
+    height:70px;
+    border-radius:50%;
+
+    background:
+        radial-gradient(circle at 30% 30%,
+        #d8b97d,
+        #9d6f3a);
+
+    color:white;
+    font-family:'Cormorant Garamond',serif;
+    font-size:1.4rem;
+    font-weight:700;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    box-shadow:
+        0 8px 20px rgba(0,0,0,.2);
+}
+
+.letter{
+    position:absolute;
+    left:10%;
+    bottom:0;
+
+    width:80%;
+    height:90%;
+
+    background:#fffdf9;
+
+    border-radius:8px;
+
+    transition:1.4s cubic-bezier(.22,1,.36,1);
+}
+
+.envelope.open .letter{
+    transform:translateY(-120px);
+}
+
+.envelope::before{
+    content:'';
+
+    position:absolute;
+    inset:0;
+
+    background:
+    linear-gradient(
+        120deg,
+        transparent 30%,
+        rgba(255,255,255,.5) 50%,
+        transparent 70%
+    );
+
+    transform:translateX(-120%);
+    animation:shine 4s infinite;
+}
+
+@keyframes shine{
+    to{
+        transform:translateX(120%);
+    }
+}
+
+#main-content{
+    display: flex;
+    flex-direction: column;
+    z-index: -1;
+    opacity:0;
+    transform:translateY(30px);
+    transition:1.2s ease;
+}
+
+#main-content.visible{
+    opacity:1;
+    transform:none;
+}
+
 </style>
 </head>
 
@@ -448,12 +573,13 @@ footer{
 <div id="envelope-screen">
 
     <div class="envelope" onclick="openInvitation()">
-
+<!--        <div class="letter"></div>-->
         <div class="flap"></div>
 
+        <div class="seal" id="seal">K&E</div>
+
         <div class="letter-preview">
-            <h2>Kristiāna & Everts</h2>
-            <p>Klikšķini, lai atvērtu ielūgumu</p>
+            <p>Klikšķini, lai atvērtu</p>
         </div>
 
     </div>
@@ -462,10 +588,8 @@ footer{
 
 <div id="main-content" style="display:none;">
 
-<div class="petals" id="petals"></div>
-
 <section class="hero">
-
+    <div class="petals" id="petals"></div>
     <h1>Kristiāna & Everts</h1>
 
     <h2>PRECAS</h2>
@@ -653,20 +777,31 @@ footer{
 <script>
 
 function openInvitation(){
-
     document
-    .querySelector('.envelope')
-    .classList.add('open');
+    .getElementById('seal')
+    .classList.add('fade-out');
 
     setTimeout(()=>{
+
+        document
+        .querySelector('.envelope')
+        .classList.add('open');
 
         document
         .getElementById('envelope-screen')
         .classList.add('fade-out');
 
+
+
         document
         .getElementById('main-content')
         .style.display='block';
+
+        requestAnimationFrame(()=>{
+            document
+              .getElementById('main-content')
+              .classList.add('visible');
+        });
 
         setTimeout(()=>{
 
