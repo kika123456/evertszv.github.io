@@ -850,7 +850,7 @@ body{
 <section class="section reveal">
     <div class="card" style="display: flex; flex-direction: column; align-items: center">
         <div class="title">Dāvanas</div>
-        <p style="text-align: center; margin-bottom: 15px">
+        <p id="guest-msg-3" style="text-align: center; margin-bottom: 15px">
             Jūsu klātbūtne mūsu svētkos ir lielākā dāvana.
             Ja tomēr vēlaties mūs iepriecināt papildus, priecāsimies par ieguldījumu mūsu nākotnes kopīgajos plānos.
         </p>
@@ -868,7 +868,7 @@ body{
 
         <div class="title">Lūdzam apstiprināt dalību</div>
 
-        <p style="text-align: center; margin-bottom: 15px">
+        <p id="guest-msg-4" style="text-align: center; margin-bottom: 15px">
             Būsim pateicīgi, ja savu dalību apstiprināsiet līdz 2026. gada 31. jūlijam.
         </p>
 
@@ -901,7 +901,7 @@ body{
 
         </form>
 
-        <p style="text-align: center; margin-top: 15px">
+        <p id="guest-msg-5" style="text-align: center; margin-top: 15px">
             Jautājumu gadījumā droši sazinieties ar mums.
         </p>
 
@@ -1093,6 +1093,10 @@ const guest = guests[guestKey];
 
 const guestMsg = document.getElementById('guest-msg')
 const guestMsg2 = document.getElementById(('guest-msg-2'))
+const guestMsg3 = document.getElementById('guest-msg-3')
+const guestMsg4 = document.getElementById(('guest-msg-4'))
+const guestMsg5 = document.getElementById('guest-msg-5')
+
 
 if (guest) {
 
@@ -1104,13 +1108,25 @@ if (guest) {
     guestMsg.innerHTML = `
         Ar prieku aicinām būt kopā ar mums mūsu kāzu dienā, lai svinētu, smietos un radītu skaistas atmiņas!
         <br>
-        Gaidīsim ${guest.pronoun} 2026. gada 22. augustā plkst. 11.00 pie Kuldīgas novada dzimtsarakstu nodaļas.
-    `;
+        Gaidīsim ${guest.pronoun} 2026. gada 22. augustā plkst. 11.00 pie Kuldīgas novada Dzimtsarakstu nodaļas.`;
 
-    guestMsg2.innerHTML = `Elegants vasaras stils.
-            <br>
-            Ja vēlaties, iedvesmu var smelties no zemes toņiem, zaļajiem toņiem un maigiem pasteļtoņiem. Krāsu palete atspoguļo mūsu svinību noskaņu, taču tā ir tikai iedvesmai.
-            Priecāsimies ${guest.pronoun} redzēt jebkurā krāsā, kurā jūtaties ērti, skaisti un svinīgi.`
+
+    if (guest.pronoun === "Tevi") {
+
+        guestMsg2.innerHTML = `Elegants vasaras stils.
+        <br>
+        Ja vēlies, iedvesmu var smelties no zemes toņiem, zaļajiem toņiem un maigiem pasteļtoņiem. Krāsu palete atspoguļo mūsu svinību noskaņu, taču tā ir tikai iedvesmai.
+        Priecāsimies ${guest.pronoun} redzēt jebkurā krāsā, kurā jūtaties ērti, skaisti un svinīgi.`;
+
+        guestMsg3.innerHTML = `Tava klātbūtne mūsu svētkos ir lielākā dāvana.
+            Ja tomēr vēlies mūs iepriecināt papildus, priecāsimies par ieguldījumu mūsu nākotnes kopīgajos plānos.`;
+
+        guestMsg4.innerHTML = `Būsim pateicīgi, ja savu dalību apstiprināsi līdz 2026. gada 31. jūlijam.`
+
+        guestMsg5.innerHTML = `Jautājumu gadījumā droši sazinies ar mums.`
+
+    }
+
 
     const nameField = document.getElementById("guest-name-field");
 
